@@ -73,7 +73,7 @@ class XBeeData:
         result = []
 
         if self.single_dest:
-            result.append(253) #0xfd = 253
+            result.append(253)  # 0xfd = 253
         else:
             result.append(200)
 
@@ -84,22 +84,16 @@ class XBeeData:
         for i in range(self.nums_count):
             result.append(self.nums[i])
 
-        print result
         result = binascii.hexlify(bytearray(result))
-        print result
         return bytearray.fromhex(result)
-        
+
     def print_data(self):
-		print "***DATA INFO:"
-		if self.single_dest:
-			print "First byte: fd"
-		else:
-			print "First byte: fc"
-		print "Destination: " + self.dest_address
-		print "Origin: " + self.origin_address
-		print "Number of bytes: " + str(self.nums_count)
-		print "Data: " + str(self.nums)
-		
-			
-		
-        
+        print "***DATA INFO:"
+        if self.single_dest:
+            print "First byte: fd"
+        else:
+            print "First byte: fc"
+        print "Destination: " + self.dest_address
+        print "Origin: " + self.origin_address
+        print "Number of bytes: " + str(self.nums_count)
+        print "Data: " + str(self.nums)
