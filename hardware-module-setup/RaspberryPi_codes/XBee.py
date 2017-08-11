@@ -47,7 +47,7 @@ class XBeeModule:
                 byte3, byte4 = (self.get_int_byte(), self.get_int_byte())
 
                 for i in range(data.nums_count):
-                    data.nums[i] = self.get_int_byte()
+                    data.nums.append(self.get_int_byte())
 
                 data.origin_address = self.get_str_byte() + self.get_str_byte()
 
@@ -89,11 +89,17 @@ class XBeeData:
         print result
         return bytearray.fromhex(result)
         
-        #ddd = [0xfd, 0x01, 0x00, 0x01, 0xab]
-        #return bytearray.fromhex(binascii.hexlify(bytearray(ddd)))
-
-
-# DRF1605H.send_data([0xfd, 0x01, 0x00, 0x00, 0xab])
-# DRF1605H = XBeeModule(serial_dir="dev/ttyUSB0", baudrate=9600, timeout=1, module_name="DRF1605H", address=0x0000)
-#d = XBeeData(single_dest=True, nums_count=2, dest_address="143e", origin_address="", nums=[9, 10])
-#print d.export_xbee_format()
+    def print_data(self):
+		print "***DATA INFO:"
+		if self.single_dest:
+			print "First byte: fd"
+		else:
+			print "First byte: fc"
+		print "Destination: " + self.dest_address
+		print "Origin: " + self.origin_address
+		print "Number of bytes: " + str(self.nums_count)
+		print "Data: " + str(self.nums)
+		
+			
+		
+        

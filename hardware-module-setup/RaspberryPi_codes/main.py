@@ -3,7 +3,7 @@ import serial
 import binascii
 import XBee
 
-DELAY_TIME = 5
+DELAY_TIME = 4
 
 DRF1605H = XBee.XBeeModule(
 	serial_dir="/dev/ttyUSB0", 
@@ -14,12 +14,13 @@ DRF1605H = XBee.XBeeModule(
 
 
 while True:
-    time.sleep(DELAY_TIME)
-    data = XBee.XBeeData(
+    
+    data_to_be_sent = XBee.XBeeData(
 		single_dest=True, 
 		nums_count=1, 
 		dest_address="0001", 
-		origin_address="", 
-		nums=[15])
-	
-    DRF1605H.send_data(data)
+		origin_address="143e", 
+		nums=[15])	
+    #DRF1605H.send_data(data_to_be_sent)
+    DRF1605H.receive_data().print_data()
+    time.sleep(DELAY_TIME)
