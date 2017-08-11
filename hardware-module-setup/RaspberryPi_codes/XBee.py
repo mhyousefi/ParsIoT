@@ -73,23 +73,27 @@ class XBeeData:
         result = []
 
         if self.single_dest:
-            result.append('0xfd')
+            result.append(253) #0xfd = 253
         else:
-            result.append('0xfc')
+            result.append(200)
 
-        result.append(hex(self.nums_count))
-        result.append("0x" + self.dest_address[:2])
-        result.append("0x" + self.dest_address[2:])
+        result.append(self.nums_count)
+        result.append(int(self.dest_address[:2], 16))
+        result.append(int(self.dest_address[2:], 16))
 
         for i in range(self.nums_count):
-            result.append(hex(self.nums[i]))
+            result.append(self.nums[i])
 
+        print result
         result = binascii.hexlify(bytearray(result))
+        print result
         return bytearray.fromhex(result)
-        return result
+        
+        #ddd = [0xfd, 0x01, 0x00, 0x01, 0xab]
+        #return bytearray.fromhex(binascii.hexlify(bytearray(ddd)))
 
 
 # DRF1605H.send_data([0xfd, 0x01, 0x00, 0x00, 0xab])
 # DRF1605H = XBeeModule(serial_dir="dev/ttyUSB0", baudrate=9600, timeout=1, module_name="DRF1605H", address=0x0000)
-d = XBeeData(single_dest=True, nums_count=2, dest_address="143e", origin_address="", nums=[9, 10])
-print d.export_xbee_format()
+#d = XBeeData(single_dest=True, nums_count=2, dest_address="143e", origin_address="", nums=[9, 10])
+#print d.export_xbee_format()
