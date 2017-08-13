@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f41eca0a-f1d5-46f8-8c64-238aac49592c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/Plants.py" afterPath="$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/Plants.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/XBee.py" afterPath="$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/XBee.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hardware-module-setup/Arduino_codes/module_setup/DHT_test/DHT_test.ino" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hardware-module-setup/Arduino_codes/module_setup/XBee_test/XBeeModule.ino" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hardware-module-setup/Arduino_codes/module_setup/YL69_test/YL69_test.ino" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,15 +34,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="XBee.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="XBee.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/XBee.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="709">
-              <caret line="94" column="23" lean-forward="false" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="23" />
+            <state relative-caret-position="1692">
+              <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#1957#2251#1" expanded="false" />
-                <element signature="e#3461#3789#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -51,8 +50,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+            <state relative-caret-position="864">
+              <caret line="48" column="5" lean-forward="false" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -60,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Plants.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Plants.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/Plants.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -96,9 +95,9 @@
         <option value="$PROJECT_DIR$/../RaspberryPiPractice/alternating-led-test.py" />
         <option value="$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/DRF1605H-setup.py" />
         <option value="$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/flower.py" />
-        <option value="$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/main.py" />
         <option value="$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/Plants.py" />
         <option value="$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/XBee.py" />
+        <option value="$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/main.py" />
       </list>
     </option>
   </component>
@@ -520,7 +519,6 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#1957#2251#1" expanded="false" />
-            <element signature="e#3461#3789#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -550,7 +548,6 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#1957#2251#1" expanded="false" />
-            <element signature="e#3461#3789#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -572,7 +569,6 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#1957#2251#1" expanded="false" />
-            <element signature="e#3461#3789#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -594,7 +590,6 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#1957#2251#1" expanded="false" />
-            <element signature="e#3461#3789#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -616,7 +611,6 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#1957#2251#1" expanded="false" />
-            <element signature="e#3461#3789#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -661,33 +655,32 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/flower.py" />
-    <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/XBee.py">
+    <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/Plants.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="709">
-          <caret line="94" column="23" lean-forward="false" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#1957#2251#1" expanded="false" />
-            <element signature="e#3461#3789#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="342">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+        <state relative-caret-position="864">
+          <caret line="48" column="5" lean-forward="false" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/Plants.py">
+    <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/XBee.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="1692">
+          <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#1957#2251#1" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
