@@ -93,7 +93,8 @@ class XBeeData:
             temp=self.nums[0],
             humidity=self.nums[1],
             smoke_value=self.nums[2],
-            yl_69_values=self.nums[3:]
+            water_level=self.nums[3],
+            yl_69_values=self.nums[4:]
         )
 
     def print_data(self):
