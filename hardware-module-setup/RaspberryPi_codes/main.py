@@ -15,14 +15,14 @@ flower_type_info = {
         "humidity_thresholds": [20, 70],
         "soil_humidity_thresholds": [200, 250],
         "watering_min_interval": 3,
-        "smoke_thresholds": [140,160]
+        "smoke_thresholds": [140, 160]
     },
     "": {
         "temp_thresholds": [27, 30],
         "humidity_thresholds": [20, 70],
         "soil_humidity_thresholds": [200, 250],
         "watering_min_interval": 3,
-        "smoke_thresholds": [140,160]
+        "smoke_thresholds": [140, 160]
     },
 }
 
@@ -33,6 +33,7 @@ DRF1605H = XBee.XBeeModule(
     module_name="DRF1605H",
     address="143e"
 )
+
 
 def issue_commands(received_data, plant_info):
     result = []
@@ -53,21 +54,25 @@ def issue_commands(received_data, plant_info):
     else:
         result.append(0)
 
-    if received_data.smoke_value > plant_info["smoke_thresholds"][1]:  # smoke level getting higher than the upper threshold
+    if received_data.smoke_value > plant_info["smoke_thresholds"][1]:
+        # smoke level getting higher than the upper threshold
         result.append(1)
-    elif received_data.smoke_value < plant_info["smoke_thresholds"][0]:  # smoke level getting lower than the lower threshold
+    elif received_data.smoke_value < plant_info["smoke_thresholds"][0]:
+        # smoke level getting lower than the lower threshold
         result.append(0)
-
+    print "COMMANDS ISSUED"
     return result
+
 
 while True:
     while True:
-		raw_data = DRF1605H.receive_data()
-		raw_data.print_data()
-		received_data = raw_data.export_greenhouse_data()
-		if (received_data.address != ""):
-			break
-		
+        raw_data = DRF1605H.receive_data()
+        raw_data.print_data()
+        received_data = raw_data.export_greenhouse_data()
+        if received_data.address != "":
+            print "MEANINGFUL DATA RECEIVED!"
+            break
+
     greenhouse_address = received_data.address
     plant_info = flower_type_info[greenhouse_address]
 

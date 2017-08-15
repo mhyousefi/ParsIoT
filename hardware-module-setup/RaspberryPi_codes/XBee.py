@@ -35,19 +35,20 @@ class XBeeModule:
             **EXAMPLE:** data = [0xfd, 0x02, 0x00, 0x01, 0xa1, 0xb2] sends the TWO numbers: 0xa1 and 0xb2
             to XBee module in the network with address 0x0001...
         """
+        print "SENDING COMMANDS TO ARDUINO"
         self.serial_port.write(xbee_data.export_ready2send_xbee_format())
 
     def receive_data(self):
-		data = XBeeData(single_dest=True, nums_count=0, dest_address="", origin_address="", nums=[])
-		if self.get_str_byte() == "fd":
-			data.single_dest = True
-			data.nums_count = self.get_int_byte()
-			data.dest_address = self.address
-			byte3, byte4 = (self.get_int_byte(), self.get_int_byte())
-			for i in range(data.nums_count):
-				data.nums.append(self.get_int_byte())
-			data.origin_address = self.get_str_byte() + self.get_str_byte()
-		return data
+        data = XBeeData(single_dest=True, nums_count=0, dest_address="", origin_address="", nums=[])
+        if self.get_str_byte() == "fd":
+            data.single_dest = True
+            data.nums_count = self.get_int_byte()
+            data.dest_address = self.address
+            byte3, byte4 = (self.get_int_byte(), self.get_int_byte())
+            for i in range(data.nums_count):
+                data.nums.append(self.get_int_byte())
+            data.origin_address = self.get_str_byte() + self.get_str_byte()
+        return data
 
 
 class XBeeData:
@@ -84,37 +85,37 @@ class XBeeData:
         return bytearray.fromhex(result)
 
     def export_greenhouse_data(self):
-		temp = 25
-		humidity = 40
-		smoke_value = 150
-		water_level = 0
-		yl_69_values = [100, 100]
-			
-		if len(self.nums) > 4:
-			temp=self.nums[0]
-			husidity=self.nums[1]
-			smoke_value=self.nums[2]
-			water_level=self.nums[3]
-			yl_69_values=self.nums[4:]
-			
-		return Plants.Greenhouse(
+        temp = 25
+        humidity = 40
+        smoke_value = 150
+        water_level = 0
+        yl_69_values = [100, 100]
+
+        if len(self.nums) > 4:
+            temp = self.nums[0]
+            husidity = self.nums[1]
+            smoke_value = self.nums[2]
+            water_level = self.nums[3]
+            yl_69_values = self.nums[4:]
+
+        return Plants.Greenhouse(
             address=self.origin_address,
             temp=temp,
             humidity=humidity,
             smoke_value=smoke_value,
             water_level=water_level,
-			yl_69_values=yl_69_values)
+            yl_69_values=yl_69_values)
 
     def print_data(self):
-		if len(self.nums) == 0:
-			return
-			
-		print "***DATA INFO:"
-		if self.single_dest:
-			print "First byte: fd"
-		else:
-			print "First byte: fc"
-		print "Destination: " + self.dest_address
-		print "Origin: " + self.origin_address
-		print "Number of bytes: " + str(self.nums_count)
-		print "Data: " + str(self.nums)
+        if len(self.nums) == 0:
+            return
+
+        print "***DATA INFO:"
+        if self.single_dest:
+            print "First byte: fd"
+        else:
+            print "First byte: fc"
+        print "Destination: " + self.dest_address
+        print "Origin: " + self.origin_address
+        print "Number of bytes: " + str(self.nums_count)
+        print "Data: " + str(self.nums)
