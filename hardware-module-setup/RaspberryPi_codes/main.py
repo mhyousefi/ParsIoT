@@ -11,12 +11,19 @@ flower_type_info = {
         "smoke_thresholds": [140, 160]
     },
     "0001": {
-        "temp_thresholds": [20, 30],
+        "temp_thresholds": [27, 30],
         "humidity_thresholds": [20, 70],
         "soil_humidity_thresholds": [200, 250],
         "watering_min_interval": 3,
-        "smoke_thresholds": []
-    }
+        "smoke_thresholds": [140,160]
+    },
+    "": {
+        "temp_thresholds": [27, 30],
+        "humidity_thresholds": [20, 70],
+        "soil_humidity_thresholds": [200, 250],
+        "watering_min_interval": 3,
+        "smoke_thresholds": [140,160]
+    },
 }
 
 DRF1605H = XBee.XBeeModule(
@@ -39,7 +46,7 @@ def issue_commands(received_data, plant_info):
         if value < plant_info["soil_humidity_thresholds"]:  # pump is turned on if at least one plant has dry soil
             pump_value = 1
             break;
-    commands.append(pump_value)
+    result.append(pump_value)
 
     if received_data.water_level:  # the reservoir is out of water
         result.append(1)
@@ -54,8 +61,13 @@ def issue_commands(received_data, plant_info):
     return result
 
 while True:
-    time.sleep(1)
-    received_data = DRF1605H.receive_data().export_greenhouse_data()
+    while True:
+		raw_data = DRF1605H.receive_data()
+		raw_data.print_data()
+		received_data = raw_data.export_greenhouse_data()
+		if (received_data.address != ""):
+			break
+		
     greenhouse_address = received_data.address
     plant_info = flower_type_info[greenhouse_address]
 
