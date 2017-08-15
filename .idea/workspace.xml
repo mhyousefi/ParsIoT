@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f41eca0a-f1d5-46f8-8c64-238aac49592c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hardware-module-setup/Arduino_codes/module_setup/DHT_test/DHT_test.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hardware-module-setup/Arduino_codes/module_setup/XBee_test/XBeeModule.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hardware-module-setup/Arduino_codes/module_setup/YL69_test/YL69_test.ino" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/main.py" afterPath="$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/main.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="XBee.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="XBee.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/XBee.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1692">
-              <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+            <state relative-caret-position="583">
+              <caret line="96" column="24" lean-forward="false" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="24" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#1957#2251#1" expanded="false" />
@@ -47,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="864">
-              <caret line="48" column="5" lean-forward="false" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+            <state relative-caret-position="482">
+              <caret line="53" column="17" lean-forward="true" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -186,8 +185,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -514,6 +513,35 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/XBee.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#1957#2251#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="48" column="5" lean-forward="false" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/Plants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/XBee.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="792">
           <caret line="70" column="8" lean-forward="false" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
           <folding>
@@ -663,23 +691,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/main.py">
+    <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/XBee.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="48" column="5" lean-forward="false" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+        <state relative-caret-position="583">
+          <caret line="96" column="24" lean-forward="false" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="24" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#1957#2251#1" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/XBee.py">
+    <entry file="file://$PROJECT_DIR$/hardware-module-setup/RaspberryPi_codes/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1692">
-          <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+        <state relative-caret-position="482">
+          <caret line="53" column="17" lean-forward="true" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#1957#2251#1" expanded="false" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
