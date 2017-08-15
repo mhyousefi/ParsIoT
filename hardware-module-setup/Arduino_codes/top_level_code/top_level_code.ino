@@ -10,6 +10,8 @@
 #define DHTTYPE DHT11
 // pin numbers
 #define MQ_9_PIN A0
+#define WATER_SHORTAGE_LED_PIN 10
+#define TOO_MUCH_SMOKE_LED_PIN 11
 #define YL_1_PIN A1
 #define YL_2_PIN A2 
 #define DHT_PIN 3
@@ -37,6 +39,8 @@ struct GreenhouseData {
 struct RaspCommands {
   bool fan;
   bool pump;
+  bool out_of_water;
+  bool too_much_smoke;
 };
 
 GreenhouseData data;
@@ -52,12 +56,14 @@ void setup() {
   pinMode(MQ_9_PIN, INPUT);
   pinMode(DHT_PIN, INPUT);
   pinMode(WATER_LEVEL_PIN, INPUT);
+  pinMode(WATER_SHORTAGE_LED_PIN, OUTPUT);
+  pinMode(TOO_MUCH_SMOKE_LED_PIN, OUTPUT);
   pinMode(FAN_RELAY_PIN, OUTPUT);
   pinMode(PUMP_RELAY_PIN, OUTPUT);
 }
 
 void loop() {
-  delay(500);
+  delay(100);
   
   // Sending greenhouse info to Raspberry Pi
   data = read_sensor_data();
@@ -87,7 +93,7 @@ GreenhouseData read_sensor_data(){
   res.temp_value = dht_sensor.readTemperature();
   res.humidity_value = dht_sensor.readHumidity();
   res.MQ_9_value = digitalRead(MQ_9_PIN);
-  res.water_level_value = 0xa;
+  res.water_level_value = digitalRead(WATER_LEVEL);
   return res;
 }
  
@@ -134,6 +140,18 @@ void exec_raspberry_commands(RaspCommands commands) {
   }
   else {
     digitalWrite(PUMP_RELAY_PIN, LOW);
+ }
+if (commands.out_of_water == true){
+    digitalWrite(WATER_SHORTAGE_LED_PIN, HIGH);
+  }
+  else {
+    digitalWrite(WATER_SHORTAGE_LED_PIN, LOW);
+  }
+if (commands.too_much_smoke == true){
+    digitalWrite(TOO_MUCH_SMOKE_LED_PIN, HIGH);
+  }
+  else {
+    digitalWrite(TOO_MUCH_SMOKE_LED_PIN, LOW);
   }
 }
 
@@ -148,7 +166,8 @@ RaspCommands read_raspberry_commands() {
     RaspCommands commands;
     commands.fan = (int(XBeeSer.read()) == 0) ? false : true;
     commands.pump = (int(XBeeSer.read()) == 0) ? false : true;
+    commands.out_of_water = (int(XBeeSer.read()) == 0) ? false : true;
+    commands.too_much_smoke = (int(XBeeSer.read()) == 0) ? false : true;
     return commands;
   }
 }
-
