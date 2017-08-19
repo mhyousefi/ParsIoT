@@ -21,7 +21,7 @@ class XBeeModule:
         self.serial_port = serial.Serial(self.serial_dir, baudrate=self.baudrate, timeout=self.timeout)
 
     def get_str_byte(self):
-        return xbee_byte_to_str(self.serial_port.read())
+		return xbee_byte_to_str(self.serial_port.read())
 
     def get_int_byte(self):
         return xbee_byte_to_int(byte=self.serial_port.read())
@@ -35,20 +35,24 @@ class XBeeModule:
             **EXAMPLE:** data = [0xfd, 0x02, 0x00, 0x01, 0xa1, 0xb2] sends the TWO numbers: 0xa1 and 0xb2
             to XBee module in the network with address 0x0001...
         """
-        print "SENDING COMMANDS TO ARDUINO"
+        
         self.serial_port.write(xbee_data.export_ready2send_xbee_format())
+        print "COMMANDS SENT!"
 
     def receive_data(self):
-        data = XBeeData(single_dest=True, nums_count=0, dest_address="", origin_address="", nums=[])
-        if self.get_str_byte() == "fd":
-            data.single_dest = True
-            data.nums_count = self.get_int_byte()
-            data.dest_address = self.address
-            byte3, byte4 = (self.get_int_byte(), self.get_int_byte())
-            for i in range(data.nums_count):
-                data.nums.append(self.get_int_byte())
-            data.origin_address = self.get_str_byte() + self.get_str_byte()
-        return data
+		data = XBeeData(single_dest=True, nums_count=0, dest_address="", origin_address="", nums=[])
+		while True:
+			byte = self.get_str_byte()
+			if byte == "fd":
+				data.single_dest = True
+				data.nums_count = self.get_int_byte()
+				data.dest_address = self.address
+				dummy1, dummy = (self.get_int_byte(), self.get_int_byte())
+				for i in range(data.nums_count):
+					data.nums.append(self.get_int_byte())
+				data.origin_address = self.get_str_byte() + self.get_str_byte()
+				return data
+			
 
 
 class XBeeData:
@@ -82,7 +86,9 @@ class XBeeData:
             result.append(num)
 
         result = binascii.hexlify(bytearray(result))
-        return bytearray.fromhex(result)
+        result = bytearray.fromhex(result)
+        print result
+        return result
 
     def export_greenhouse_data(self):
         temp = 25
