@@ -8,7 +8,7 @@ def xbee_byte_to_str(byte):
 
 
 def xbee_byte_to_int(byte):
-    return int(str(binascii.hexlify(byte)), 16)
+    return int(xbee_byte_to_str(byte), 16)
 
 
 class XBeeModule:
@@ -52,6 +52,7 @@ class XBeeModule:
 					data.nums.append(self.get_int_byte())
 				data.origin_address = self.get_str_byte() + self.get_str_byte()
 				return data
+			# print "BYTE RECEIVED: " + self.get_str_byte()
 			
 
 
@@ -70,7 +71,7 @@ class XBeeData:
         self.origin_address = origin_address
 
     def export_ready2send_xbee_format(self):
-        """Returns a an array which is ready to be written using a XBeeModule obj"""
+        """Returns a an array which is ready to be sent using a XBeeModule obj"""
         result = []
 
         if self.single_dest:
@@ -87,7 +88,7 @@ class XBeeData:
 
         result = binascii.hexlify(bytearray(result))
         result = bytearray.fromhex(result)
-        print result
+        print "raw data being sent looks like this: " + str(result)
         return result
 
     def export_greenhouse_data(self):

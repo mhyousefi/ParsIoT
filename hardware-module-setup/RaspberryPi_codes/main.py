@@ -7,13 +7,13 @@ url1="http://thingtalk.ir/update"
 
 
 flower_type_info = {
-    "0000": {
+    "0001": {
         "temp_thresholds": [28, 40],
         "humidity_thresholds": [20, 70],
         "soil_humidity_thresholds": [150, 220],
         "smoke_thresholds": [140, 250]
     },
-    "0001": {
+    "143e": {
         "temp_thresholds": [28, 20],
         "humidity_thresholds": [20, 70],
         "soil_humidity_thresholds": [150, 200],
@@ -26,7 +26,7 @@ DRF1605H = XBee.XBeeModule(
     baudrate=9600,
     timeout=1,
     module_name="DRF1605H",
-    address="143e"
+    address="0000"
 )
 
 
@@ -64,10 +64,13 @@ def receive_arduino_data():
 		raw_data = DRF1605H.receive_data()
 		raw_data.print_data()
 		received_data = raw_data.export_greenhouse_data()
-		print received_data.address
+		# print received_data.address
 		if received_data.address != "":
 			print "MEANINGFUL DATA RECEIVED!"
 			return received_data
+
+while True:
+	
 
 while True:
 	received_data = receive_arduino_data()
@@ -75,11 +78,8 @@ while True:
 	greenhouse_address = received_data.address
 	plant_info = flower_type_info[greenhouse_address]
 
-	# commands = [fan, pump, out_of_water, too_much_smoke]
-    # 1 to activate and 0 otherwise
 	commands = issue_commands(received_data, plant_info)
 	print "Commands: " + str(commands)
-	# print "DEST ADDRESS: " + str(greenhouse_address)
 	
 	message = XBee.XBeeData(
         single_dest=True,
