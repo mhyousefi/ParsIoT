@@ -2,19 +2,19 @@ import time
 import XBee
 import Plants
 import requests
+
 url1="http://thingtalk.ir/update"
 
 
-
 flower_type_info = {
-    "0001": {
-        "temp_thresholds": [28, 40],
+    "0000": {
+        "temp_thresholds": [15, 20],
         "humidity_thresholds": [20, 70],
         "soil_humidity_thresholds": [150, 220],
         "smoke_thresholds": [140, 250]
     },
-    "143e": {
-        "temp_thresholds": [28, 20],
+    "0001": {
+        "temp_thresholds": [15, 20],
         "humidity_thresholds": [20, 70],
         "soil_humidity_thresholds": [150, 200],
         "smoke_thresholds": [180, 250]
@@ -26,7 +26,7 @@ DRF1605H = XBee.XBeeModule(
     baudrate=9600,
     timeout=1,
     module_name="DRF1605H",
-    address="0000"
+    address="0001"
 )
 
 
@@ -56,7 +56,8 @@ def issue_commands(received_data, plant_info):
         # smoke level getting lower than the lower threshold
         result.append(0)
 	print "COMMANDS ISSUED"
-    return result
+	result = list(map(int, raw_input("Enter commands: ").split(" ")))
+	return result
 
 
 def receive_arduino_data():
@@ -64,13 +65,9 @@ def receive_arduino_data():
 		raw_data = DRF1605H.receive_data()
 		raw_data.print_data()
 		received_data = raw_data.export_greenhouse_data()
-		# print received_data.address
 		if received_data.address != "":
-			print "MEANINGFUL DATA RECEIVED!"
 			return received_data
 
-while True:
-	
 
 while True:
 	received_data = receive_arduino_data()

@@ -52,8 +52,6 @@ class XBeeModule:
 					data.nums.append(self.get_int_byte())
 				data.origin_address = self.get_str_byte() + self.get_str_byte()
 				return data
-			# print "BYTE RECEIVED: " + self.get_str_byte()
-			
 
 
 class XBeeData:
@@ -88,7 +86,6 @@ class XBeeData:
 
         result = binascii.hexlify(bytearray(result))
         result = bytearray.fromhex(result)
-        print "raw data being sent looks like this: " + str(result)
         return result
 
     def export_greenhouse_data(self):
@@ -117,7 +114,7 @@ class XBeeData:
         if len(self.nums) == 0:
             return
 
-        print "***DATA INFO:"
+        print "***DATA:"
         if self.single_dest:
             print "First byte: fd"
         else:
@@ -126,3 +123,4 @@ class XBeeData:
         print "Origin: " + self.origin_address
         print "Number of bytes: " + str(self.nums_count)
         print "Data: " + str(self.nums)
+        print ""
