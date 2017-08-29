@@ -21,10 +21,12 @@ class XBeeModule:
         self.serial_port = serial.Serial(self.serial_dir, baudrate=self.baudrate, timeout=self.timeout)
 
     def get_str_byte(self):
-		return xbee_byte_to_str(self.serial_port.read())
+        received_byte = self.serial_port.read()
+        return xbee_byte_to_str(received_byte)
 
     def get_int_byte(self):
-        return xbee_byte_to_int(byte=self.serial_port.read())
+        received_byte = self.serial_port.read()
+        return xbee_byte_to_int(received_byte)
 
     def send_data(self, xbee_data):
         """ **Sends data according to the XBee format:** \n
@@ -35,25 +37,24 @@ class XBeeModule:
             **EXAMPLE:** data = [0xfd, 0x02, 0x00, 0x01, 0xa1, 0xb2] sends the TWO numbers: 0xa1 and 0xb2
             to XBee module in the network with address 0x0001...
         """
-        
-        self.serial_port.write(xbee_data.export_ready2send_xbee_format())
+
+        self.serial_port.write(xbee_data.prepare_to_send())
         print "COMMANDS SENT!"
 
     def receive_data(self):
-		data = XBeeData(single_dest=True, nums_count=0, dest_address="", origin_address="", nums=[])
-		while True:
-			byte = self.get_str_byte()
-			if byte == "fd":
-				data.single_dest = True
-				data.nums_count = self.get_int_byte()
-				data.dest_address = self.address
-				dummy1, dummy = (self.get_int_byte(), self.get_int_byte())
-				for i in range(data.nums_count):
-					data.nums.append(self.get_int_byte())
-				data.origin_address = self.get_str_byte() + self.get_str_byte()
-				return data
-			# print "BYTE RECEIVED: " + self.get_str_byte()
-			
+        data = XBeeData(single_dest=True, nums_count=0, dest_address="", origin_address="", nums=[])
+        while True:
+            byte = self.get_str_byte()
+            if byte == "fd":
+                data.single_dest = True
+                data.nums_count = self.get_int_byte()
+                data.dest_address = self.address
+                dummy1, dummy = (self.get_int_byte(), self.get_int_byte())
+                for i in range(data.nums_count):
+                    data.nums.append(self.get_int_byte())
+                data.origin_address = self.get_str_byte() + self.get_str_byte()
+                return data
+            # print "BYTE RECEIVED: " + self.get_str_byte()
 
 
 class XBeeData:
@@ -70,8 +71,8 @@ class XBeeData:
         self.dest_address = dest_address
         self.origin_address = origin_address
 
-    def export_ready2send_xbee_format(self):
-        """Returns a an array which is ready to be sent using a XBeeModule obj"""
+    def prepare_to_send(self):
+        """Returns an array which is ready to be sent using a XBeeModule obj"""
         result = []
 
         if self.single_dest:
@@ -100,7 +101,7 @@ class XBeeData:
 
         if len(self.nums) > 4:
             temp = self.nums[0]
-            husidity = self.nums[1]
+            humidity = self.nums[1]
             smoke_value = self.nums[2]
             water_level = self.nums[3]
             yl_69_values = self.nums[4:]
