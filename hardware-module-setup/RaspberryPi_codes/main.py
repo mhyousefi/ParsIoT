@@ -5,6 +5,7 @@ import requests
 
 url1="http://thingtalk.ir/update"
 
+url1 = "http://thingtalk.ir/update"
 
 flower_type_info = {
     "0000": {
@@ -44,7 +45,7 @@ def issue_commands(received_data, plant_info):
             break;
     result.append(pump_value)
 
-    if received_data.water_level==1:  # the reservoir is out of water
+    if received_data.water_level == 1:  # the reservoir is out of water
         result.append(1)
     else:
         result.append(0)
@@ -62,33 +63,32 @@ def issue_commands(received_data, plant_info):
 
 
 def receive_arduino_data():
-	while True:
-		raw_data = DRF1605H.receive_data()
-		raw_data.print_data()
-		received_data = raw_data.export_greenhouse_data()
-		if received_data.address != "":
-			return received_data
+    while True:
+        raw_data = DRF1605H.receive_data()
+        raw_data.print_data()
+        received_data = raw_data.export_greenhouse_data()
+        # print received_data.address
+        if received_data.address != "":
+            print "MEANINGFUL DATA RECEIVED!"
+            return received_data
 
 
 while True:
-	received_data = receive_arduino_data()
-	
-	greenhouse_address = received_data.address
-	plant_info = flower_type_info[greenhouse_address]
+    received_data = receive_arduino_data()
 
-	commands = issue_commands(received_data, plant_info)
-	print "Commands: " + str(commands)
-	
-	message = XBee.XBeeData(
-        single_dest=True,
-        nums_count=4,
-        nums=commands,
-        dest_address=greenhouse_address,
-        origin_address=DRF1605H.address)
-        
-	DRF1605H.send_data(message)
-	print ""
+    greenhouse_address = received_data.address
+    plant_info = flower_type_info[greenhouse_address]
 
+    commands = issue_commands(received_data, plant_info)
+    print "Commands: " + str(commands)
+
+    message = XBee.XBeeData(
+		single_dest=True,
+		nums_count=4,
+		nums=commands,
+		dest_address=greenhouse_address,
+		origin_address=DRF1605H.address)
+		
 	"""
 	payload1={'key':'DBM24BJ53DYD0W22', 'field1':received_data.yl_69_values[0]}
 	payload2={'key':'DBM24BJ53DYD0W22','field2':received_data.yl_69_values[1]}
@@ -107,6 +107,7 @@ while True:
 	r=requests.post(url1,payload6)
 	r=requests.post(url1,payload7)
 	r=requests.post(url1,payload8)
-	"""
-	
-	
+    """
+    
+	DRF1605H.send_data(message)
+	print ""

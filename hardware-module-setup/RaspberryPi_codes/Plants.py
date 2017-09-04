@@ -1,6 +1,5 @@
 # Implementing data-holder classes: Flower and Greenhouse
 
-
 class Flower:
     def __init__(self, temp_thresholds, humidity_thresholds, soil_humidity_thresholds, watering_min_interval):
         self.temp_thresholds = temp_thresholds
