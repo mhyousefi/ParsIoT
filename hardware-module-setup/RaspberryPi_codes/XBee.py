@@ -36,7 +36,7 @@ class XBeeModule:
             to XBee module in the network with address 0x0001...
         """
         
-        self.serial_port.write(xbee_data.export_ready2send_xbee_format())
+        self.serial_port.write(xbee_data.prepare_to_send())
         print "COMMANDS SENT!"
 
     def receive_data(self):
@@ -68,7 +68,7 @@ class XBeeData:
         self.dest_address = dest_address
         self.origin_address = origin_address
 
-    def export_ready2send_xbee_format(self):
+    def prepare_to_send(self):
         """Returns a an array which is ready to be sent using a XBeeModule obj"""
         result = []
 

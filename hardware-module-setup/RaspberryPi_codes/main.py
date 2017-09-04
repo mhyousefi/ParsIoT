@@ -56,7 +56,8 @@ def issue_commands(received_data, plant_info):
         # smoke level getting lower than the lower threshold
         result.append(0)
 	print "COMMANDS ISSUED"
-	result = list(map(int, raw_input("Enter commands: ").split(" ")))
+	# for debugging puposes:
+	# result = list(map(int, raw_input("Enter commands: ").split(" ")))
 	return result
 
 
@@ -84,6 +85,9 @@ while True:
         nums=commands,
         dest_address=greenhouse_address,
         origin_address=DRF1605H.address)
+        
+	DRF1605H.send_data(message)
+	print ""
 
 	"""
 	payload1={'key':'DBM24BJ53DYD0W22', 'field1':received_data.yl_69_values[0]}
@@ -105,5 +109,4 @@ while True:
 	r=requests.post(url1,payload8)
 	"""
 	
-	DRF1605H.send_data(message)
-	print ""
+	
