@@ -1,6 +1,8 @@
-import serial
 import binascii
-import Plants
+
+import serial
+
+import plants
 
 
 def xbee_byte_to_str(byte):
@@ -37,29 +39,10 @@ class XBeeModule:
             **EXAMPLE:** data = [0xfd, 0x02, 0x00, 0x01, 0xa1, 0xb2] sends the TWO numbers: 0xa1 and 0xb2
             to XBee module in the network with address 0x0001...
         """
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> 3f0647e5597b150cbf05d21eaa6de05bf66d77ab
         self.serial_port.write(xbee_data.prepare_to_send())
         print "COMMANDS SENT!"
 
     def receive_data(self):
-<<<<<<< HEAD
-		data = XBeeData(single_dest=True, nums_count=0, dest_address="", origin_address="", nums=[])
-		while True:
-			byte = self.get_str_byte()
-			if byte == "fd":
-				data.single_dest = True
-				data.nums_count = self.get_int_byte()
-				data.dest_address = self.address
-				dummy1, dummy = (self.get_int_byte(), self.get_int_byte())
-				for i in range(data.nums_count):
-					data.nums.append(self.get_int_byte())
-				data.origin_address = self.get_str_byte() + self.get_str_byte()
-				return data
-=======
         data = XBeeData(single_dest=True, nums_count=0, dest_address="", origin_address="", nums=[])
         while True:
             byte = self.get_str_byte()
@@ -67,13 +50,11 @@ class XBeeModule:
                 data.single_dest = True
                 data.nums_count = self.get_int_byte()
                 data.dest_address = self.address
-                dummy1, dummy = (self.get_int_byte(), self.get_int_byte())
+                dummy1, dummy2 = (self.get_int_byte(), self.get_int_byte())
                 for i in range(data.nums_count):
                     data.nums.append(self.get_int_byte())
                 data.origin_address = self.get_str_byte() + self.get_str_byte()
                 return data
-            # print "BYTE RECEIVED: " + self.get_str_byte()
->>>>>>> 3f0647e5597b150cbf05d21eaa6de05bf66d77ab
 
 
 class XBeeData:
@@ -91,11 +72,7 @@ class XBeeData:
         self.origin_address = origin_address
 
     def prepare_to_send(self):
-<<<<<<< HEAD
-        """Returns a an array which is ready to be sent using a XBeeModule obj"""
-=======
         """Returns an array which is ready to be sent using a XBeeModule obj"""
->>>>>>> 3f0647e5597b150cbf05d21eaa6de05bf66d77ab
         result = []
 
         if self.single_dest:
@@ -128,7 +105,7 @@ class XBeeData:
             water_level = self.nums[3]
             yl_69_values = self.nums[4:]
 
-        return Plants.Greenhouse(
+        return plants.Greenhouse(
             address=self.origin_address,
             temp=temp,
             humidity=humidity,

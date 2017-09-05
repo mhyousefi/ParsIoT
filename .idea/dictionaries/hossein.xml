@@ -1,8 +1,11 @@
 <component name="ProjectDictionaryState">
   <dictionary name="hossein">
     <words>
+      <w>arduino</w>
       <w>baudrate</w>
       <w>dest</w>
+      <w>mqtt</w>
+      <w>thingtalk</w>
       <w>xbee</w>
     </words>
   </dictionary>
