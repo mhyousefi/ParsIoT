@@ -4,6 +4,8 @@ import serial
 
 import plants
 
+import time
+
 
 def xbee_byte_to_str(byte):
     return str(binascii.hexlify(byte))
@@ -46,6 +48,7 @@ class XBeeModule:
         data = XBeeData(single_dest=True, nums_count=0, dest_address="", origin_address="", nums=[])
         while True:
             byte = self.get_str_byte()
+            #print "Byte: " + str(byte)
             if byte == "fd":
                 data.single_dest = True
                 data.nums_count = self.get_int_byte()

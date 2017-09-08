@@ -1,4 +1,7 @@
 import paho.mqtt.client as paho
+import command
+
+mqtt_comms = command.Commands()
 
 
 def apply_mqtt_message_on_commands(message, commands):
@@ -17,11 +20,11 @@ def on_mqtt_subscribe(client, userdata, mid, granted_qos):
     print("Subscribed: " + str(mid) + " " + str(granted_qos))
 
 
-def on_mqtt_message(client, userdata, msg, commands):
+def on_mqtt_message(client, userdata, msg):
     # print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
     message = str(msg.payload)
     print ("MQTT Message: " + message)
-    apply_mqtt_message_on_commands(message, commands)
+    apply_mqtt_message_on_commands(message, mqtt_comms)
 
 
 client = paho.Client()
@@ -32,4 +35,6 @@ client.subscribe("ParsIoT_TOPIC", qos=1)
 
 
 def mqtt_threaded_function(commands):
-    client.loop_forever(commands)
+    client.loop_forever()
+    global mqtt_comms
+    mqtt_comms = commands

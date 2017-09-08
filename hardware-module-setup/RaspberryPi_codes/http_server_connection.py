@@ -32,6 +32,7 @@ def send_yl_data_to_server(received_data):
 
     for ind in range(1, 8):
         field = 'field' + str(ind)
+        # print "IND = " + str(ind)
         field_value = received_data.yl_69_values[ind - 1]
         payload = {'key': key, field: field_value}
         req = requests.post(SERVER_PLATFORM_URL, payload)
