@@ -1,36 +1,45 @@
-from threading import Thread
-import command
-import main_flow_function
+import threading
 import xbee
-import mqtt_server_connection
-
-
-COMMANDS_COUNT = 6
+import command
+import constants
+from main_flow import MainFlowThread
+from server_connection_mqtt import MqttThread
 
 DRF1605H = xbee.XBeeModule(
-    serial_dir="/dev/ttyUSB0",
-    baudrate=9600,
-    timeout=1,
-    module_name="DRF1605H",
-    address="0001"
+    serial_dir=constants.SERIAL_DIRECTORY,
+    baudrate=constants.BAUDRATE,
+    timeout=constants.TIMEOUT,
+    module_name=constants.XBEE_NAME,
+    address=constants.XBEE_ADDR
 )
 
 commands = command.Commands()
+lock = threading.Lock()
+threads = []
 
-# mqtt_thread = Thread(target=mqtt_server_connection.mqtt_threaded_function(commands), args=())
-# http_thread = Thread(
-#     target=main_flow_function.main_flow_threaded_function(
-#        xbee_module=DRF1605H,
-#        commands_count=COMMANDS_COUNT,
-#        commands=commands
-#    ),
-#    args=()
-#)
+# Creating new threads
+main_flow_thread = MainFlowThread(
+    thread_name="Main Flow Thread",
+    thread_lock=lock,
+    xbee_module=DRF1605H,
+    commands_count=constants.COMMANDS_COUNT,
+    commands=commands
+)
+mqtt_thread = MqttThread(
+    thread_name="MQTT Thread",
+    thread_lock=lock,
+    commands=commands
+)
 
-# mqtt_thread.start()
-# http_thread.start()
+# Starting new Threads
+main_flow_thread.start()
+mqtt_thread.start()
 
-main_flow_function.main_flow_threaded_function(
-	xbee_module=DRF1605H,
-    commands_count=COMMANDS_COUNT,
-    commands=commands)
+# Adding threads to thread list
+threads.append(main_flow_thread)
+threads.append(mqtt_thread)
+
+# Wait for all threads to complete
+for t in threads:
+    t.join()
+print "Exiting Main Thread"
