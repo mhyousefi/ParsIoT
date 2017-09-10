@@ -9,7 +9,8 @@ COMMANDS_COUNT = 6
 # Server info
 HTTP_URL = "http://thingtalk.ir/update"
 MQTT_URL = "thingtalk.ir"
-MQTT_TOPIC_NAME = "ParsIoT_TOPIC"
+MQTT_COMMANDS_TOPIC_NAME = "ParsIoT_commands"
+MQTT_ALARM_TOPIC_NAME = "ParsIoT_alarms"
 MQTT_PORT = 1883
 
 CHANNEL_API_KEYS = {

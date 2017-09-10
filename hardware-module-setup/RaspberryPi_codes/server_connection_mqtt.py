@@ -1,8 +1,8 @@
+import command
+import paho.mqtt.client as paho
 from threading import Thread
 from threading import Lock
-import paho.mqtt.client as paho
-import command
-from constants import MQTT_TOPIC_NAME
+from constants import MQTT_COMMANDS_TOPIC_NAME
 from constants import MQTT_URL
 from constants import MQTT_PORT
 
@@ -40,7 +40,7 @@ client = paho.Client()
 client.on_subscribe = on_mqtt_subscribe
 client.on_message = on_mqtt_message
 client.connect(MQTT_URL, MQTT_PORT)
-client.subscribe(MQTT_TOPIC_NAME, qos=1)
+client.subscribe(MQTT_COMMANDS_TOPIC_NAME, qos=1)
 
 
 class MqttThread(Thread):

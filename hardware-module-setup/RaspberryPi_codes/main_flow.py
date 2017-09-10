@@ -2,8 +2,19 @@ from threading import Thread
 from time import sleep
 import server_connection_http
 import xbee
+import constants
 from constants import COMMANDS_COUNT
 from constants import FLOWER_TYPE_INFO
+import paho.mqtt.client as paho
+
+
+def on_publish(client, userdata, mid):
+    print("ALARM SENT TO APP")
+
+client = paho.Client()
+client.on_publish = on_publish
+client.connect(constants.MQTT_URL, constants.MQTT_PORT)
+client.loop_start()
 
 
 class MainFlowThread(Thread):
@@ -70,29 +81,35 @@ def receive_arduino_data(xbee_module):
     return cleaned_data
 
 
+def send_alarm(greenhouse_data):
+    message = ""
+    lower_smoke_thr = FLOWER_TYPE_INFO["smoke_thresholds"][0]
+    upper_smoke_thr = FLOWER_TYPE_INFO["smoke_thresholds"][1]
+
+    if greenhouse_data.smoke_value in range(lower_smoke_thr, upper_smoke_thr):
+        message += "0"
+    else:
+        message += "1"
+    message += str(greenhouse_data.water_level)
+
+    (rc, mid) = client.publish("ParsIoT_alarms", message, qos=1)
+
+
 def main_flow(xbee_module, commands, thread_lock):
     print "HTTP thread is up and running."
     print "Interactions with the Arduino began..."
-    i = 1
+
     while True:
-        print "\nListening for data..."
         thread_lock.acquire()
 
-        # # debug code
-        # print "DOING SOMETHING AMAZING IN THE MAIN THREAD!"
-        # if ~ i%2:
-        #     commands.set_values([0, 0, 0, 0], 1, 1)
-        # else:
-        #     commands.set_values([0, 0, 0, 0], 1, 0)
-        # print "&&& MAIN &&&: " + str(commands.get_values())
-        # sleep(3)
+        print "\nListening for data..."
 
-        received_data = receive_arduino_data(xbee_module)
-        server_connection_http.send_sensor_data_to_server(received_data)
-        server_connection_http.send_yl_data_to_server(received_data)
+        greenhouse_data = receive_arduino_data(xbee_module)
+        server_connection_http.send_sensor_data_to_server(greenhouse_data)
+        server_connection_http.send_yl_data_to_server(greenhouse_data)
 
-        plant_info = FLOWER_TYPE_INFO[received_data.address]
-        raspberry_commands = issue_commands(received_data, plant_info)
+        plant_info = FLOWER_TYPE_INFO[greenhouse_data.address]
+        raspberry_commands = issue_commands(greenhouse_data, plant_info)
         server_connection_http.send_commands_to_server(raspberry_commands)
 
         commands.set_values(raspberry_commands[2:], raspberry_commands[0], raspberry_commands[1])
@@ -102,9 +119,10 @@ def main_flow(xbee_module, commands, thread_lock):
             single_dest=True,
             nums_count=COMMANDS_COUNT,
             nums=commands.get_values(),
-            dest_address=received_data.address,
+            dest_address=greenhouse_data.address,
             origin_address=xbee_module.address
         )
         xbee_module.send_data(message)
+        send_alarm(greenhouse_data)
 
         thread_lock.release()

@@ -10,7 +10,7 @@ class Flower:
 
 
 class Greenhouse:
-    def __init__(self, address, temp, humidity, smoke_value, yl_69_values, water_level):
+    def __init__(self, address="0000", temp="25", humidity=30, smoke_value=10, yl_69_values=[], water_level=0):
         self.address = address
         self.temp = temp
         self.humidity = humidity

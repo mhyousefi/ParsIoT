@@ -2,6 +2,7 @@ import threading
 import xbee
 import command
 import constants
+import plants
 from main_flow import MainFlowThread
 from server_connection_mqtt import MqttThread
 
@@ -14,6 +15,7 @@ DRF1605H = xbee.XBeeModule(
 )
 
 commands = command.Commands()
+greenhouseData = plants.Greenhouse()
 lock = threading.Lock()
 threads = []
 
