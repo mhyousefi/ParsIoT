@@ -30,6 +30,7 @@ def send_yl_data_to_server(received_data):
 
 def send_commands_to_server(commands):
     key = CHANNEL_API_KEYS['RaspberryComms']
+    print "##############: " + str(commands)
 
     for ind in range(1, 7):
         field = 'field' + str(ind)

@@ -31,12 +31,12 @@ class MainFlowThread(Thread):
         main_flow(self.xbee_module, self.commands, self.thread_lock)
 
 
-def eval_led_status(result, received_data, plant_info):
-    if received_data.smoke_value > plant_info["smoke_thresholds"][1]:
-        # smoke level getting higher than the upper threshold
+def eval_led_status(result, received_data, plant_info):	
+    if received_data.smoke_value > plant_info["smoke_threshold"]:
+        # smoke level exceeding the threshold
         result.append(1)
-    elif received_data.smoke_value < plant_info["smoke_thresholds"][0]:
-        # smoke level getting lower than the lower threshold
+    else:
+        # smoke level under the threshold
         result.append(0)
 
     if received_data.water_level == 1:  # the reservoir is out of water
@@ -46,17 +46,22 @@ def eval_led_status(result, received_data, plant_info):
 
 
 def eval_relay_status(result, received_data, plant_info):
-    if received_data.temp > plant_info["temp_thresholds"][1]:  # temp is at the lower threshold
+    if received_data.temp > plant_info["temp_threshold"]: 
+		# temp is exceeding the threshold
         result.append(1)
-    elif received_data.temp < plant_info["temp_thresholds"][0]:  # temp is at the lower threshold
+    else:
         result.append(0)
 
     pump_value = 0
     for value in received_data.yl_69_values:
-        if value > plant_info["soil_humidity_thresholds"][1]:  # pump is turned on if at least one plant has dry soil
+		# pump is turned on if at least one plant has dry soil
+        if value > plant_info["soil_humidity_threshold"]:  
             pump_value = 1
             break
     result.append(pump_value)
+    
+    result.append(0);
+    result.append(0);
 
 
 def issue_commands(received_data, plant_info):
@@ -64,9 +69,6 @@ def issue_commands(received_data, plant_info):
 
     eval_led_status(result, received_data, plant_info)
     eval_relay_status(result, received_data, plant_info)
-
-    result.append(0);
-    result.append(0);
 
     # result = list(map(int, raw_input("Enter commands: ").split(" "))) # for debugging purposes
     print "COMMANDS ISSUED"
@@ -81,18 +83,15 @@ def receive_arduino_data(xbee_module):
     return cleaned_data
 
 
-def send_alarm(greenhouse_data):
+def send_alarm(greenhouse_data, smoke_threshold):
     message = ""
-    lower_smoke_thr = FLOWER_TYPE_INFO["smoke_thresholds"][0]
-    upper_smoke_thr = FLOWER_TYPE_INFO["smoke_thresholds"][1]
-
-    if greenhouse_data.smoke_value in range(lower_smoke_thr, upper_smoke_thr):
+    if greenhouse_data.smoke_value < smoke_threshold:
         message += "0"
     else:
         message += "1"
     message += str(greenhouse_data.water_level)
 
-    (rc, mid) = client.publish("ParsIoT_alarms", message, qos=1)
+    (rc, mid) = client.publish(constants.MQTT_ALARM_TOPIC_NAME, message, qos=1)
 
 
 def main_flow(xbee_module, commands, thread_lock):
@@ -123,6 +122,6 @@ def main_flow(xbee_module, commands, thread_lock):
             origin_address=xbee_module.address
         )
         xbee_module.send_data(message)
-        send_alarm(greenhouse_data)
+        send_alarm(greenhouse_data, plant_info["smoke_threshold"])
 
         thread_lock.release()

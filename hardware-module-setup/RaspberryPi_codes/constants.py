@@ -9,8 +9,8 @@ COMMANDS_COUNT = 6
 # Server info
 HTTP_URL = "http://thingtalk.ir/update"
 MQTT_URL = "thingtalk.ir"
-MQTT_COMMANDS_TOPIC_NAME = "ParsIoT_commands"
-MQTT_ALARM_TOPIC_NAME = "ParsIoT_alarms"
+MQTT_COMMANDS_TOPIC_NAME = "ParsIoT_1"
+MQTT_ALARM_TOPIC_NAME = "ParsIoT_2"
 MQTT_PORT = 1883
 
 CHANNEL_API_KEYS = {
@@ -28,15 +28,15 @@ CHANNEL_API_KEYS = {
 # present in the greenhouse with specific flower info and requirements
 FLOWER_TYPE_INFO = {
     "0000": {
-        "temp_thresholds": [15, 20],
+        "temp_threshold": 25,
         "humidity_thresholds": [20, 70],
-        "soil_humidity_thresholds": [150, 220],
-        "smoke_thresholds": [140, 250]
+        "soil_humidity_threshold": 100,
+        "smoke_threshold": 150
     },
     "0001": {
-        "temp_thresholds": [15, 20],
+        "temp_threshold": 25,
         "humidity_thresholds": [20, 70],
-        "soil_humidity_thresholds": [150, 200],
-        "smoke_thresholds": [180, 250]
+        "soil_humidity_threshold": 100,
+        "smoke_threshold": 150
     }
 }
