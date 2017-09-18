@@ -8,6 +8,7 @@ COMMANDS_COUNT = 6
 
 # Server info
 HTTP_URL = "http://thingtalk.ir/update"
+USER_COMMANDS_URL = 'http://thingtalk.ir/channels/536/feed.json'
 MQTT_URL = "thingtalk.ir"
 MQTT_COMMANDS_TOPIC_NAME = "ParsIoT_1"
 MQTT_ALARM_TOPIC_NAME = "ParsIoT_2"
@@ -20,7 +21,8 @@ CHANNEL_API_KEYS = {
     "userFanCommands": "LR8COSLIN20AOX2G",
     "userPump1Commands": "FKJKQRD6Y0IQ1KJF",
     "userPump2Commands": "M02OGLRYVTH1XJL5",
-    "userIdleActuatorCommands": "PN2QD5QKANXZK59A"
+    "userIdleActuatorCommands": "PN2QD5QKANXZK59A",
+    "userCommands": "FOIO9Z1OKB98MK60"
 }
 
 # Flower info

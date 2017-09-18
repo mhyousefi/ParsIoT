@@ -4,7 +4,7 @@ import command
 import constants
 import plants
 from main_flow import MainFlowThread
-from server_connection_mqtt import MqttThread
+# from server_connection_mqtt import MqttThread
 
 DRF1605H = xbee.XBeeModule(
     serial_dir=constants.SERIAL_DIRECTORY,
@@ -17,7 +17,7 @@ DRF1605H = xbee.XBeeModule(
 commands = command.Commands()
 greenhouseData = plants.Greenhouse()
 lock = threading.Lock()
-threads = []
+# threads = []
 
 # Creating new threads
 main_flow_thread = MainFlowThread(
@@ -27,21 +27,21 @@ main_flow_thread = MainFlowThread(
     commands_count=constants.COMMANDS_COUNT,
     commands=commands
 )
-mqtt_thread = MqttThread(
-    thread_name="MQTT Thread",
-    thread_lock=lock,
-    commands=commands
-)
+# mqtt_thread = MqttThread(
+#     thread_name="MQTT Thread",
+#     thread_lock=lock,
+#     commands=commands
+# )
 
 # Starting new Threads
 main_flow_thread.start()
-mqtt_thread.start()
+# mqtt_thread.start()
 
 # Adding threads to thread list
-threads.append(main_flow_thread)
-threads.append(mqtt_thread)
+# threads.append(main_flow_thread)
+# threads.append(mqtt_thread)
 
 # Wait for all threads to complete
-for t in threads:
-    t.join()
+# for t in threads:
+#     t.join()
 print "Exiting Main Thread"

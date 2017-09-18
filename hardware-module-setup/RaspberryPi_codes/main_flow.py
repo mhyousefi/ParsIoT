@@ -1,15 +1,16 @@
 from threading import Thread
-from time import sleep
+import server_connection_http as server
+import paho.mqtt.client as paho
+import constants
 import server_connection_http
 import xbee
-import constants
 from constants import COMMANDS_COUNT
 from constants import FLOWER_TYPE_INFO
-import paho.mqtt.client as paho
 
 
 def on_publish(client, userdata, mid):
     print("ALARM SENT TO APP")
+
 
 client = paho.Client()
 client.on_publish = on_publish
@@ -31,7 +32,7 @@ class MainFlowThread(Thread):
         main_flow(self.xbee_module, self.commands, self.thread_lock)
 
 
-def eval_led_status(result, received_data, plant_info):	
+def eval_led_status(result, received_data, plant_info):
     if received_data.smoke_value > plant_info["smoke_threshold"]:
         # smoke level exceeding the threshold
         result.append(1)
@@ -46,20 +47,20 @@ def eval_led_status(result, received_data, plant_info):
 
 
 def eval_relay_status(result, received_data, plant_info):
-    if received_data.temp > plant_info["temp_threshold"]: 
-		# temp is exceeding the threshold
+    if received_data.temp > plant_info["temp_threshold"]:
+        # temp is exceeding the threshold
         result.append(1)
     else:
         result.append(0)
 
     pump_value = 0
     for value in received_data.yl_69_values:
-		# pump is turned on if at least one plant has dry soil
-        if value > plant_info["soil_humidity_threshold"]:  
+        # pump is turned on if at least one plant has dry soil
+        if value > plant_info["soil_humidity_threshold"]:
             pump_value = 1
             break
     result.append(pump_value)
-    
+
     result.append(0);
     result.append(0);
 
@@ -94,6 +95,17 @@ def send_alarm(greenhouse_data, smoke_threshold):
     (rc, mid) = client.publish(constants.MQTT_ALARM_TOPIC_NAME, message, qos=1)
 
 
+def apply_user_comms(commands):
+    user_comms = server.get_last_user_comms_from_server()
+    if user_comms[0] == "0":
+        commands.turn_man_override_off()
+    elif user_comms[0] == "1":
+        values = []
+        for ind in range(1, len(user_comms)):
+            values.append(int(user_comms[ind]))
+        user_comms.apply_user_input(values)
+
+
 def main_flow(xbee_module, commands, thread_lock):
     print "HTTP thread is up and running."
     print "Interactions with the Arduino began..."
@@ -111,6 +123,7 @@ def main_flow(xbee_module, commands, thread_lock):
         raspberry_commands = issue_commands(greenhouse_data, plant_info)
         server_connection_http.send_commands_to_server(raspberry_commands)
 
+        apply_user_comms(commands)
         commands.set_values(raspberry_commands[2:], raspberry_commands[0], raspberry_commands[1])
         print "comms: " + str(commands.get_values())
 
