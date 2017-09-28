@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.mahsa.greenhouse.MainActivity"
+    tools:showIn="@layout/app_bar_main"
+    android:background="@drawable/flower2"
+    >
+
+    <Button
+        android:id="@+id/hum"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:text="رطوبت"
+        android:background="@drawable/shape_oval"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textColor="#ffff"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:id="@+id/temp"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/shape_oval"
+        android:text="دما"
+        android:layout_alignParentTop="true"
+       android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffff"/>
+
+    <Button
+        android:id="@+id/shum"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/shape_oval"
+        android:elevation="0dp"
+        android:text="رطوبت خاک"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:textColor="#ffff"/>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,7 @@
+#Wed Aug 30 18:27:02 IRDT 2017
+base.0=/Users/hossein/Documents/Android-projects/greenhouse/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_66845be9eba770693637a5c3b776b1a6c83e4687
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/Users/hossein/Documents/Android-projects/greenhouse/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_53a91fb3e6bdeacdd106a921c410f09a6b78dd19/classes.dex
+base.1=/Users/hossein/Documents/Android-projects/greenhouse/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_53a91fb3e6bdeacdd106a921c410f09a6b78dd19
+file.0=/Users/hossein/Documents/Android-projects/greenhouse/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_66845be9eba770693637a5c3b776b1a6c83e4687/classes.dex

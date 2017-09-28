@@ -1,8 +1,10 @@
 from threading import Thread
-import server_connection_http as server
+
 import paho.mqtt.client as paho
+
 import constants
 import server_connection_http
+import server_connection_http as server
 import xbee
 from constants import COMMANDS_COUNT
 from constants import FLOWER_TYPE_INFO
@@ -46,6 +48,19 @@ def eval_led_status(result, received_data, plant_info):
         result.append(0)
 
 
+def determine_pump_status(yl_values, thresholds, pump_indices):
+    cnt = 0
+    for ind in pump_indices:
+        if yl_values[ind] <= thresholds["critical"]:
+            return 1
+        if yl_values[ind] in range(thresholds["critical"] + 1, thresholds["regular"] + 1):
+            cnt += 1
+
+    if cnt > 1:
+        return 1
+    return 0
+
+
 def eval_relay_status(result, received_data, plant_info):
     if received_data.temp > plant_info["temp_threshold"]:
         # temp is exceeding the threshold
@@ -53,17 +68,21 @@ def eval_relay_status(result, received_data, plant_info):
     else:
         result.append(0)
 
-    pump_value = 0
-    for value in received_data.yl_69_values:
-        # pump is turned on if at least one plant has dry soil
-        if value > plant_info["soil_humidity_threshold"]:
-            pump_value = 1
-            break
-    result.append(pump_value)
+    pump1_value = determine_pump_status(
+        yl_values=received_data.yl_69_values,
+        thresholds=plant_info["soil_humidity_thresholds"],
+        pump_indices=[1, 2, 3]
+    )
+    pump2_value = determine_pump_status(
+        yl_values=received_data.yl_69_values,
+        thresholds=plant_info["soil_humidity_thresholds"],
+        pump_indices=[5, 6, 7]
+    )g
+    result.append(pump1_value)
+    result.append(pump2_value)
 
-	# These two commands correspond to two other actuators 
-    result.append(0);
-    result.append(0);
+    # Idle relay, therefore always off
+    result.append(0)
 
 
 def issue_commands(received_data, plant_info):
@@ -86,22 +105,22 @@ def receive_arduino_data(xbee_module):
 
 
 def send_alarm(commands):
-	message = commands.get_alarm_message()
-	(rc, mid) = client.publish(constants.MQTT_ALARM_TOPIC_NAME, message, qos=1)
+    if commands.are_alarming():
+        message = commands.get_alarm_message()
+        (rc, mid) = client.publish(constants.MQTT_ALARM_TOPIC_NAME, message, qos=1)
 
 
 def apply_user_comms(commands):
-	user_comms = server.get_last_user_comms_from_server()
-	if user_comms[0] == "0":
-		commands.turn_man_override_off()
-	elif user_comms[0] == "1":
-		commands.turn_man_override_on()
-		values = []
-		for ind in range(1, len(user_comms)):
-			values.append(int(user_comms[ind]))
-		commands.set_relay_values(values)
-	#print "user commands applied"
-
+    user_comms = server.get_last_user_comms_from_server()
+    if user_comms[0] == "0":
+        commands.turn_man_override_off()
+    elif user_comms[0] == "1":
+        commands.turn_man_override_on()
+        values = []
+        for ind in range(1, len(user_comms)):
+            values.append(int(user_comms[ind]))
+        commands.set_relay_values(values)
+        # print "user commands applied"
 
 
 def main_flow(xbee_module, commands, thread_lock):
@@ -123,10 +142,10 @@ def main_flow(xbee_module, commands, thread_lock):
 
         apply_user_comms(commands)
         commands.set_values(
-			new_relay_values=raspberry_commands[2:], 
-			smoke_led_new_value=raspberry_commands[0], 
-			water_level_led_new_value=raspberry_commands[1]
-		)
+            new_relay_values=raspberry_commands[2:],
+            smoke_led_new_value=raspberry_commands[0],
+            water_level_led_new_value=raspberry_commands[1]
+        )
         print "comms being sent: " + str(commands.get_values())
 
         message = xbee.XBeeData(

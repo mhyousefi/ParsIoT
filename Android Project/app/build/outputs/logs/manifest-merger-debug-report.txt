@@ -1,0 +1,151 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:2:1-42:12
+	package
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:3:5-43
+		INJECTED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:5:5-79
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:5:22-76
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:7:5-68
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:7:22-65
+uses-permission#android.permission.INTERNET
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:8:5-67
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:8:22-64
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:10:5-75
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:10:22-72
+application
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:12:5-40:19
+MERGED from [com.android.support:design:26.0.0-alpha1] /Users/hossein/.android/build-cache/ac336d733c8bf41251f1ae031c784cc85e1d9d53/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/hossein/.android/build-cache/6b0a2c57a998b3a4584f7992f1f771af0cf9b051/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /Users/hossein/.android/build-cache/123a526b229a12d9d002cd0a54bfff1819a9f683/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /Users/hossein/.android/build-cache/5b5848a447fdc56b5a98d3a8be09c80de2cf3cdd/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:26.0.0-alpha1] /Users/hossein/.android/build-cache/2cc3573ace060827c00d4c3b639b8ad36c516007/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/hossein/.android/build-cache/22bd69c8cb5bf10c8989ab7b6e6a2409d5a96c1c/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/hossein/.android/build-cache/50136860b651552f34da4ad14cec9056c4aaa1fb/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/hossein/.android/build-cache/374e354a553c9692f97d287e648185cd589789f6/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/hossein/.android/build-cache/6a5a783f096471037460b7b45d8ef2321916b469/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/hossein/.android/build-cache/cc3fdee849ba3b8f7057b575e04c332189d3eace/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/hossein/.android/build-cache/d6585998fc79672f92d438676669f8a94be04294/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/hossein/.android/build-cache/d49cbe7397fb972e608988caf8f839c4ffaf1ac7/output/AndroidManifest.xml:9:5-20
+	android:label
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:15:9-41
+	android:supportsRtl
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:17:9-35
+	android:roundIcon
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:16:9-54
+	android:allowBackup
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:13:9-35
+	android:icon
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:14:9-43
+	android:theme
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:18:9-40
+activity#com.example.mahsa.greenhouse.StartActivity
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:19:9-28:20
+	android:label
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:21:13-45
+	android:theme
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:22:13-56
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:20:13-42
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:23:13-27:29
+action#android.intent.action.MAIN
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:24:17-69
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:24:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:26:17-77
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:26:27-74
+activity#com.example.mahsa.greenhouse.TemperatureActivity
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:29:9-57
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:29:19-54
+activity#com.example.mahsa.greenhouse.HumidiityActivity
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:30:9-55
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:30:19-52
+activity#com.example.mahsa.greenhouse.SoilHumidityActivity
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:31:9-58
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:31:19-55
+activity#com.example.mahsa.greenhouse.TempchartActivity
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:32:9-55
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:32:19-52
+activity#com.example.mahsa.greenhouse.HumiditychartActivity
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:33:9-59
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:33:19-56
+activity#com.example.mahsa.greenhouse.SoilhumiditychartActivity
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:34:9-63
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:34:19-60
+activity#com.example.mahsa.greenhouse.MainActivity
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:35:9-50
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:35:19-47
+activity#com.example.mahsa.greenhouse.LoginActivity
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:36:9-51
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:36:19-48
+service#org.eclipse.paho.android.service.MqttService
+ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:38:9-39:19
+	android:name
+		ADDED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml:38:18-77
+uses-sdk
+INJECTED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:design:26.0.0-alpha1] /Users/hossein/.android/build-cache/ac336d733c8bf41251f1ae031c784cc85e1d9d53/output/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/hossein/.android/build-cache/6b0a2c57a998b3a4584f7992f1f771af0cf9b051/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /Users/hossein/.android/build-cache/123a526b229a12d9d002cd0a54bfff1819a9f683/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /Users/hossein/.android/build-cache/5b5848a447fdc56b5a98d3a8be09c80de2cf3cdd/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.0.0-alpha1] /Users/hossein/.android/build-cache/dc78b41ec75d855cef304ddf157487b90c605178/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.0.0-alpha1] /Users/hossein/.android/build-cache/2cc3573ace060827c00d4c3b639b8ad36c516007/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/hossein/.android/build-cache/22bd69c8cb5bf10c8989ab7b6e6a2409d5a96c1c/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/hossein/.android/build-cache/50136860b651552f34da4ad14cec9056c4aaa1fb/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/hossein/.android/build-cache/374e354a553c9692f97d287e648185cd589789f6/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/hossein/.android/build-cache/6a5a783f096471037460b7b45d8ef2321916b469/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/hossein/.android/build-cache/cc3fdee849ba3b8f7057b575e04c332189d3eace/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/hossein/.android/build-cache/d6585998fc79672f92d438676669f8a94be04294/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/hossein/.android/build-cache/d49cbe7397fb972e608988caf8f839c4ffaf1ac7/output/AndroidManifest.xml:5:5-7:41
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:26.0.0-alpha1] /Users/hossein/.android/build-cache/ac336d733c8bf41251f1ae031c784cc85e1d9d53/output/AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/hossein/Documents/Android-projects/greenhouse/app/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:26.0.0-alpha1] /Users/hossein/.android/build-cache/ac336d733c8bf41251f1ae031c784cc85e1d9d53/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/hossein/.android/build-cache/6b0a2c57a998b3a4584f7992f1f771af0cf9b051/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /Users/hossein/.android/build-cache/123a526b229a12d9d002cd0a54bfff1819a9f683/output/AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /Users/hossein/.android/build-cache/5b5848a447fdc56b5a98d3a8be09c80de2cf3cdd/output/AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:recyclerview-v7:26.0.0-alpha1] /Users/hossein/.android/build-cache/dc78b41ec75d855cef304ddf157487b90c605178/output/AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:transition:26.0.0-alpha1] /Users/hossein/.android/build-cache/2cc3573ace060827c00d4c3b639b8ad36c516007/output/AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/hossein/.android/build-cache/22bd69c8cb5bf10c8989ab7b6e6a2409d5a96c1c/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/hossein/.android/build-cache/50136860b651552f34da4ad14cec9056c4aaa1fb/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/hossein/.android/build-cache/374e354a553c9692f97d287e648185cd589789f6/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/hossein/.android/build-cache/6a5a783f096471037460b7b45d8ef2321916b469/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/hossein/.android/build-cache/cc3fdee849ba3b8f7057b575e04c332189d3eace/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/hossein/.android/build-cache/d6585998fc79672f92d438676669f8a94be04294/output/AndroidManifest.xml:25:5-27:41
+	android:value
+		ADDED from [com.android.support:design:26.0.0-alpha1] /Users/hossein/.android/build-cache/ac336d733c8bf41251f1ae031c784cc85e1d9d53/output/AndroidManifest.xml:27:9-38
+	android:name
+		ADDED from [com.android.support:design:26.0.0-alpha1] /Users/hossein/.android/build-cache/ac336d733c8bf41251f1ae031c784cc85e1d9d53/output/AndroidManifest.xml:26:9-47

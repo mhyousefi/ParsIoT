@@ -16,12 +16,17 @@ class Commands:
 
     def turn_man_override_off(self):
         self.user_controlling = False
-        
+
     def turn_man_override_on(self):
-		self.user_controlling = True
+        self.user_controlling = True
 
     def get_values(self):
         return [self.smoke_led_status, self.water_level_led_status] + self.relay_values
-        
+
     def get_alarm_message(self):
-		return str(self.smoke_led_status) + str(self.water_level_led_status)
+        return str(self.smoke_led_status) + str(self.water_level_led_status)
+
+    def are_alarming(self):
+        if self.smoke_led_status or self.water_level_led_status:
+            return True
+        return False

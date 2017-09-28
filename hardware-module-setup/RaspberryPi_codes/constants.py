@@ -32,13 +32,19 @@ FLOWER_TYPE_INFO = {
     "0000": {
         "temp_threshold": 21,
         "humidity_thresholds": [20, 70],
-        "soil_humidity_threshold": 60,
+        "soil_humidity_thresholds": {
+            "critical": 40,
+            "regular": 60
+        },
         "smoke_threshold": 110
     },
     "0001": {
         "temp_threshold": 21,
         "humidity_thresholds": [20, 70],
-        "soil_humidity_threshold": 60,
+        "soil_humidity_thresholds": {
+            "critical": 40,
+            "regular": 60
+        },
         "smoke_threshold": 110
     }
 }
