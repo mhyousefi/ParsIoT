@@ -3,15 +3,15 @@ SERIAL_DIRECTORY = "/dev/ttyUSB0"
 BAUDRATE = 9600
 TIMEOUT = 1
 XBEE_NAME = "DRF1605H"
-XBEE_ADDR = "0001"
+XBEE_ADDR = "0000"
 COMMANDS_COUNT = 6
 
 # Server info
 HTTP_URL = "http://thingtalk.ir/update"
-USER_COMMANDS_URL = 'http://thingtalk.ir/channels/536/feed.json'
+USER_COMMANDS_URL = 'http://thingtalk.ir/channels/536/feed.json?key=FOIO9Z1OKB98MK60'
 MQTT_URL = "thingtalk.ir"
 MQTT_COMMANDS_TOPIC_NAME = "ParsIoT_1"
-MQTT_ALARM_TOPIC_NAME = "ParsIoT_2"
+MQTT_ALARM_TOPIC_NAME = "ParsIoT_alarms"
 MQTT_PORT = 1883
 
 CHANNEL_API_KEYS = {
@@ -30,15 +30,15 @@ CHANNEL_API_KEYS = {
 # present in the greenhouse with specific flower info and requirements
 FLOWER_TYPE_INFO = {
     "0000": {
-        "temp_threshold": 25,
+        "temp_threshold": 21,
         "humidity_thresholds": [20, 70],
-        "soil_humidity_threshold": 100,
-        "smoke_threshold": 150
+        "soil_humidity_threshold": 60,
+        "smoke_threshold": 110
     },
     "0001": {
-        "temp_threshold": 25,
+        "temp_threshold": 21,
         "humidity_thresholds": [20, 70],
-        "soil_humidity_threshold": 100,
-        "smoke_threshold": 150
+        "soil_humidity_threshold": 60,
+        "smoke_threshold": 110
     }
 }

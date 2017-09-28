@@ -40,7 +40,7 @@ def eval_led_status(result, received_data, plant_info):
         # smoke level under the threshold
         result.append(0)
 
-    if received_data.water_level == 1:  # the reservoir is out of water
+    if received_data.water_level == 0:  # the reservoir is out of water
         result.append(1)
     else:
         result.append(0)
@@ -61,6 +61,7 @@ def eval_relay_status(result, received_data, plant_info):
             break
     result.append(pump_value)
 
+	# These two commands correspond to two other actuators 
     result.append(0);
     result.append(0);
 
@@ -84,26 +85,23 @@ def receive_arduino_data(xbee_module):
     return cleaned_data
 
 
-def send_alarm(greenhouse_data, smoke_threshold):
-    message = ""
-    if greenhouse_data.smoke_value < smoke_threshold:
-        message += "0"
-    else:
-        message += "1"
-    message += str(greenhouse_data.water_level)
-
-    (rc, mid) = client.publish(constants.MQTT_ALARM_TOPIC_NAME, message, qos=1)
+def send_alarm(commands):
+	message = commands.get_alarm_message()
+	(rc, mid) = client.publish(constants.MQTT_ALARM_TOPIC_NAME, message, qos=1)
 
 
 def apply_user_comms(commands):
-    user_comms = server.get_last_user_comms_from_server()
-    if user_comms[0] == "0":
-        commands.turn_man_override_off()
-    elif user_comms[0] == "1":
-        values = []
-        for ind in range(1, len(user_comms)):
-            values.append(int(user_comms[ind]))
-        user_comms.apply_user_input(values)
+	user_comms = server.get_last_user_comms_from_server()
+	if user_comms[0] == "0":
+		commands.turn_man_override_off()
+	elif user_comms[0] == "1":
+		commands.turn_man_override_on()
+		values = []
+		for ind in range(1, len(user_comms)):
+			values.append(int(user_comms[ind]))
+		commands.set_relay_values(values)
+	#print "user commands applied"
+
 
 
 def main_flow(xbee_module, commands, thread_lock):
@@ -124,8 +122,12 @@ def main_flow(xbee_module, commands, thread_lock):
         server_connection_http.send_commands_to_server(raspberry_commands)
 
         apply_user_comms(commands)
-        commands.set_values(raspberry_commands[2:], raspberry_commands[0], raspberry_commands[1])
-        print "comms: " + str(commands.get_values())
+        commands.set_values(
+			new_relay_values=raspberry_commands[2:], 
+			smoke_led_new_value=raspberry_commands[0], 
+			water_level_led_new_value=raspberry_commands[1]
+		)
+        print "comms being sent: " + str(commands.get_values())
 
         message = xbee.XBeeData(
             single_dest=True,
@@ -135,6 +137,6 @@ def main_flow(xbee_module, commands, thread_lock):
             origin_address=xbee_module.address
         )
         xbee_module.send_data(message)
-        send_alarm(greenhouse_data, plant_info["smoke_threshold"])
+        send_alarm(commands)
 
         thread_lock.release()

@@ -43,7 +43,7 @@ def send_commands_to_server(commands):
 def get_last_user_comms_from_server():
     key = CHANNEL_API_KEYS["userCommands"]
     url = constants.USER_COMMANDS_URL
-    response = requests.get(url, {'key': key})
+    response = requests.get(url)
     if response.json()["feeds"] is not None:
         feeds = response.json()["feeds"]
         if feeds[len(feeds) - 1]["field1"] is not None:
