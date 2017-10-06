@@ -15,7 +15,7 @@
 #define YL_4_PIN A4
 #define YL_5_PIN A5
 #define YL_6_PIN A6
-#define YL_7_PIN A6
+#define YL_7_PIN A7
 #define DHT_PIN 2
 #define WATER_LEVEL_PIN 3
 
@@ -31,7 +31,7 @@
 #define FD 0xfd
 #define NUMS_COUNT 0x0b
 #define RASP_PI_ADDR_1 0x00
-#define RASP_PI_ADDR_2 0x01
+#define RASP_PI_ADDR_2 0x00
 
 // General constants
 #define DHTTYPE DHT11
@@ -114,7 +114,8 @@ void loop() {
   exec_raspberry_commands();
   Serial.print("AFTER: "); print_commands();
 
-  delay(5000);
+  delay(7000);
+  Serial.println();
   Serial.println();
   Serial.println();
 }
@@ -245,25 +246,45 @@ void exec_raspberry_commands() {
    *  fan, pump, and the LEDs representing the status for smoke concentration 
    *  and reservoir water level  
    */
-   
+
+  // LED status
   if (prev_commands[0] == true) digitalWrite(TOO_MUCH_SMOKE_LED_PIN, HIGH);
   else                          digitalWrite(TOO_MUCH_SMOKE_LED_PIN, LOW);
   
   if (prev_commands[1] == true) digitalWrite(WATER_SHORTAGE_LED_PIN, HIGH);
   else                          digitalWrite(WATER_SHORTAGE_LED_PIN, LOW);
-  
+
+  // FAN status
   if (prev_commands[2] == true) digitalWrite(FAN_RELAY_PIN, LOW);
   else                          digitalWrite(FAN_RELAY_PIN, HIGH);
+
+  // PUMP 1 status
+  if (prev_commands[3] == true) {
+    digitalWrite(PUMP_1_RELAY_PIN, LOW); // turing on
+    delay(5000);
+    digitalWrite(PUMP_1_RELAY_PIN, HIGH); // turing off
+    delay(30000);
+  }
+  else digitalWrite(PUMP_1_RELAY_PIN, HIGH); // turing off
+
+  // PUMP 2 status
+  if (prev_commands[4] == true) {
+    digitalWrite(PUMP_2_RELAY_PIN, LOW); // turing on
+    delay(5000);
+    digitalWrite(PUMP_2_RELAY_PIN, HIGH); // turing off
+    delay(30000);
+  }
+  else digitalWrite(PUMP_2_RELAY_PIN, HIGH); // turing off
   
-  if (prev_commands[3] == true) digitalWrite(PUMP_1_RELAY_PIN, LOW);
-  else                          digitalWrite(PUMP_1_RELAY_PIN, HIGH);
-
-  if (prev_commands[4] == true) digitalWrite(PUMP_2_RELAY_PIN, LOW);
-  else                          digitalWrite(PUMP_2_RELAY_PIN, HIGH);
-
-  if (prev_commands[5] == true) digitalWrite(IDLE_RELAY_PIN, LOW);
-  else                          digitalWrite(IDLE_RELAY_PIN, HIGH);
-
+  // COLD STEAM status
+  if (prev_commands[5] == true) {
+    digitalWrite(IDLE_RELAY_PIN, LOW); // turning on 
+    delay(5000);
+    digitalWrite(IDLE_RELAY_PIN, HIGH); // turing off
+    delay(10000);
+  }
+  else digitalWrite(IDLE_RELAY_PIN, HIGH); // turing off
+  
   Serial.println("$$$$$ ==> finished EXECUTING Raspberry commands");
 }
 

@@ -31,7 +31,7 @@ CHANNEL_API_KEYS = {
 FLOWER_TYPE_INFO = {
     "0000": {
         "temp_threshold": 21,
-        "humidity_thresholds": [20, 70],
+        "humidity_thresholds": 20,
         "soil_humidity_thresholds": {
             "critical": 40,
             "regular": 60
@@ -40,7 +40,7 @@ FLOWER_TYPE_INFO = {
     },
     "0001": {
         "temp_threshold": 21,
-        "humidity_thresholds": [20, 70],
+        "humidity_thresholds": 20,
         "soil_humidity_thresholds": {
             "critical": 40,
             "regular": 60

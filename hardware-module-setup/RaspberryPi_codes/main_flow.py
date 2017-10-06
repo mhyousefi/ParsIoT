@@ -77,7 +77,7 @@ def eval_relay_status(result, received_data, plant_info):
         yl_values=received_data.yl_69_values,
         thresholds=plant_info["soil_humidity_thresholds"],
         pump_indices=[5, 6, 7]
-    )g
+    )
     result.append(pump1_value)
     result.append(pump2_value)
 
